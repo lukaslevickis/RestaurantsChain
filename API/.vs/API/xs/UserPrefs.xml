@@ -1,0 +1,39 @@
+﻿<Properties StartupConfiguration="{F9A44863-0D85-44C2-9D79-171859F85426}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/DAL/Entities/Restaurant.cs">
+    <Files>
+      <File FileName="src/Controllers/RestaurantController.cs" Line="39" Column="67" />
+      <File FileName="src/DAL/Entities/Restaurant.cs" Line="6" Column="18" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="API" expanded="True">
+            <Node name="API" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="DAL" expanded="True">
+                <Node name="Entities" expanded="True">
+                  <Node name="Restaurant.cs" selected="True" />
+                </Node>
+                <Node name="Repositories" expanded="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>API/API.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/lukaslevickis/Desktop/full stack/BIT/vsapps/angular/RestaurantsChain/API/src/Controllers/RestaurantController.cs" relfile="src/Controllers/RestaurantController.cs" line="40" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
