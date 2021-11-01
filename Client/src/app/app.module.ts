@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { RestaurantMenuComponent } from './components/restaurant-menu/restaurant-menu.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //import { RestaurantMenuComponent } from './components/restaurant-menu/restaurant-menu.component';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { RestaurantMenuComponent } from './components/restaurant-menu/restaurant
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

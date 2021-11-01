@@ -1,62 +1,76 @@
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-    <th scope="col">Title</th>
-    <th scope="col">Customers</th>
-    <th scope="col">Employees</th>
-    <th scope="col">Meal of the day</th>
-    <th scope="col">Remove</th>
-    <th scope="col">Update</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let restaurant of restaurants">
-    <td>{{restaurant.title}}</td>
-    <td>{{restaurant.customers}}</td>
-    <td>{{restaurant.employees}}</td>
-    <td>{{restaurant.mealName}}</td>
-    <td><button class="delete btn-danger" (click)="deleteRestaurant(restaurant.id)">remove</button></td>
-    <td><button class="update btn-primary" (click)="loadValuesToForm(restaurant)">update</button></td>
-    </tr>
-    </tbody>
-</table>
-
-<form [formGroup]="restaurantForm">
-
+<div class="container">
+    
     <div>
-        <label for="title">
-            title 
-        </label>
-        <input id="title" type="text" formControlName="title" [(ngModel)]="title">
-    </div>
-  
-    <div>
-        <label for="customers">
-            customers 
-        </label>
-        <input id="customers" type="text" formControlName="customers" [(ngModel)]="customers">
-    </div>
-
-    <div>
-        <label for="employees">
-            employees 
-        </label>
-        <input id="employees" type="text" formControlName="employees" [(ngModel)]="employees">
-    </div>
-      
-    <div>
-        <label for="meals">
+        <label>
             meal of the day 
         </label>
-        <select [(ngModel)]="mealId" formControlName="mealId">
-            <option [selected]="mealId == meal.id" *ngFor="let meal of meals" value="{{meal.id}}">{{meal.title}}</option>
+        <select [(ngModel)]="mealId2">
+            <option [selected]="mealId2 == meal.id" *ngFor="let meal of meals" value="{{meal.id}}">{{meal.title}}</option>
         </select>
     </div>
-    
-    <div *ngIf="update; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock><button class="update2 btn-primary" (click)="updateRestaurant()">update</button></ng-template>
-    <ng-template #elseBlock><button class="button btn-primary" (click)="addRestaurant()">Add</button></ng-template>
-</form>
 
-<app-restaurant-menu></app-restaurant-menu>
+    <button class="update2 btn-primary" (click)="filterTable(mealId2)">filter</button>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Customers</th>
+        <th scope="col">Employees</th>
+        <th scope="col">Meal of the day</th>
+        <th scope="col">Remove</th>
+        <th scope="col">Update</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let restaurant of restaurants">
+        <td>{{restaurant.title}}</td>
+        <td>{{restaurant.customers}}</td>
+        <td>{{restaurant.employees}}</td>
+        <td>{{restaurant.mealName}}</td>
+        <td><button class="delete btn-danger" (click)="deleteRestaurant(restaurant.id)">remove</button></td>
+        <td><button class="update btn-primary" (click)="loadValuesToForm(restaurant)">update</button></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <form [formGroup]="restaurantForm">
+
+        <div>
+            <label for="title">
+                title 
+            </label>
+            <input id="title" type="text" formControlName="title" [(ngModel)]="title">
+        </div>
+    
+        <div>
+            <label for="customers">
+                customers 
+            </label>
+            <input id="customers" type="text" formControlName="customers" [(ngModel)]="customers">
+        </div>
+
+        <div>
+            <label for="employees">
+                employees 
+            </label>
+            <input id="employees" type="text" formControlName="employees" [(ngModel)]="employees">
+        </div>
+        
+        <div>
+            <label for="meals">
+                meal of the day 
+            </label>
+            <select [(ngModel)]="mealId" formControlName="mealId">
+                <option [selected]="mealId == meal.id" *ngFor="let meal of meals" value="{{meal.id}}">{{meal.title}}</option>
+            </select>
+        </div>
+        
+        <div *ngIf="update; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock><button class="update2 btn-primary" (click)="updateRestaurant()">update</button></ng-template>
+        <ng-template #elseBlock><button class="button btn-primary" (click)="addRestaurant()">Add</button></ng-template>
+    </form>
+
+    <app-restaurant-menu (onMenuUpdated) = "menuUpdated($event)"></app-restaurant-menu>
+    
+</div>

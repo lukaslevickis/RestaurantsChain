@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { RestaurantMenu } from 'src/app/models/restaurant-menu';
 import { RestaurantMenuService } from 'src/app/services/restaurant-menu.service';
@@ -9,6 +9,7 @@ import { RestaurantMenuService } from 'src/app/services/restaurant-menu.service'
   styleUrls: ['./restaurant-menu.component.css']
 })
 export class RestaurantMenuComponent implements OnInit {
+  @Output() onMenuUpdated = new EventEmitter();
   private restaurantMenuService: RestaurantMenuService;
   meals: RestaurantMenu[];
   update: boolean = false;
@@ -50,6 +51,7 @@ export class RestaurantMenuComponent implements OnInit {
       this.meals.push(newMeal);
       
       this.resetFormValues();
+      this.onMenuUpdated.emit("");
     });
   }
 
