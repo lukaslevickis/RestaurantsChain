@@ -4,4 +4,5 @@ export interface Restaurant {
     customers: number;
     employees: number;
     mealId: number;
+    mealName: string
 }

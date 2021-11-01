@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Restaurant } from 'src/app/models/restaurant';
 import { RestaurantService } from 'src/app/services/restaurant.service';
 import { FormBuilder } from '@angular/forms';
+import { RestaurantMenuService } from 'src/app/services/restaurant-menu.service';
+import { RestaurantMenu } from 'src/app/models/restaurant-menu';
 
 @Component({
   selector: 'app-restaurant',
@@ -10,7 +12,9 @@ import { FormBuilder } from '@angular/forms';
 })
 export class RestaurantComponent implements OnInit {
   private restaurantService: RestaurantService;
+  private restaurantMenuService: RestaurantMenuService;
   public restaurants: Restaurant[] = [];
+  public meals: RestaurantMenu[] = [];
   update: boolean = false;
   mealId: number = null as any;
   employees: number = null as any;
@@ -26,14 +30,23 @@ export class RestaurantComponent implements OnInit {
     mealId: null
   });
 
-  constructor(restaurantService: RestaurantService, private formBuilder: FormBuilder) { 
+  constructor(restaurantService: RestaurantService, restaurantMenuService: RestaurantMenuService, private formBuilder: FormBuilder) { 
     this.restaurantService = restaurantService;
+    this.restaurantMenuService = restaurantMenuService;
    }
 
   ngOnInit(): void {
-    this.restaurantService.getRestaurants().subscribe((restaurantsFromApi) =>{
+    this.restaurantMenuService.getMeals().subscribe((mealsFromApi) => {
+      this.meals = mealsFromApi.sort((a, b) => (a.title > b.title) ? 1 : -1);
+    });
+
+    this.restaurantService.getRestaurants().subscribe((restaurantsFromApi) => {
       this.restaurants = restaurantsFromApi;
-    })
+      this.restaurants.forEach(restaurant => {
+        let index = this.restaurants.map(e => e.id).indexOf(restaurant.id);
+        this.assignMealName(index);
+      });
+    });
   }
 
   addRestaurant(): void {
@@ -42,10 +55,10 @@ export class RestaurantComponent implements OnInit {
     this.postData.customers = this.restaurantForm.value.customers;
     this.postData.employees = this.restaurantForm.value.employees;
     this.postData.mealId = this.restaurantForm.value.mealId;
-    console.log(this.postData)
     this.restaurantService.addRestaurant(this.postData).subscribe(newRestaurant => {
       this.restaurants.push(newRestaurant);
-      
+      let index: number = this.restaurants.map(e => e.id).indexOf(newRestaurant.id);
+      this.assignMealName(index);
       this.resetFormValues();
     });
   }
@@ -74,6 +87,7 @@ export class RestaurantComponent implements OnInit {
     this.restaurantService.updateRestaurant(this.postData).subscribe(updatedRestaurant => {
       let index = this.restaurants.map(e => e.id).indexOf(updatedRestaurant.id);
       this.restaurants[index] = updatedRestaurant;
+      this.assignMealName(index);
       this.resetFormValues();
     });
   }
@@ -85,6 +99,14 @@ export class RestaurantComponent implements OnInit {
     this.employees = null as any;
     this.mealId = null as any;
     this.update = false;
+  }
+
+  assignMealName(restaurantIndex: number): void {
+    this.meals.forEach(meal => {
+      if(meal.id == this.restaurants[restaurantIndex].mealId) {
+        this.restaurants[restaurantIndex].mealName = meal.title;
+      }
+    });
   }
 
 }

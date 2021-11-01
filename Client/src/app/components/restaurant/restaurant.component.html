@@ -15,7 +15,7 @@
     <td>{{restaurant.title}}</td>
     <td>{{restaurant.customers}}</td>
     <td>{{restaurant.employees}}</td>
-    <td>{{restaurant.mealId}}</td>
+    <td>{{restaurant.mealName}}</td>
     <td><button class="delete btn-danger" (click)="deleteRestaurant(restaurant.id)">remove</button></td>
     <td><button class="update btn-primary" (click)="loadValuesToForm(restaurant)">update</button></td>
     </tr>
@@ -46,10 +46,12 @@
     </div>
       
     <div>
-        <label for="mealId">
-            mealId 
+        <label for="meals">
+            meal of the day 
         </label>
-        <input id="mealId" type="text" formControlName="mealId" [(ngModel)]="mealId">
+        <select [(ngModel)]="mealId" formControlName="mealId">
+            <option [selected]="mealId == meal.id" *ngFor="let meal of meals" value="{{meal.id}}">{{meal.title}}</option>
+        </select>
     </div>
     
     <div *ngIf="update; then thenBlock else elseBlock"></div>
