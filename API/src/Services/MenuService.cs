@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.DAL.Entities;
 using API.DAL.Repositories;
@@ -17,7 +18,7 @@ namespace API.Services
 
         public async Task<List<Menu>> GetAllAsync()
         {
-            return await _menuRepository.GetAllAsync();
+            return await _menuRepository.GetAllAsync(q => q.OrderBy(s => s.Price));
         }
 
         public async Task<Menu> GetByIdAsync(int id)

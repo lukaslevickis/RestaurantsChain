@@ -1,8 +1,12 @@
 ﻿<Properties StartupConfiguration="{F9A44863-0D85-44C2-9D79-171859F85426}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="src/DAL/Entities/Restaurant.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/Services/MenuService.cs">
     <Files>
-      <File FileName="src/Controllers/RestaurantController.cs" Line="39" Column="67" />
+      <File FileName="src/Controllers/RestaurantController.cs" Line="27" Column="54" />
       <File FileName="src/DAL/Entities/Restaurant.cs" Line="6" Column="18" />
+      <File FileName="src/Services/RestaurantService.cs" Line="21" Column="69" />
+      <File FileName="src/DAL/Repositories/IGenericRepository.cs" Line="10" Column="50" />
+      <File FileName="src/DAL/Repositories/GenericRepository.cs" Line="21" Column="10" />
+      <File FileName="src/Services/MenuService.cs" Line="20" Column="42" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,13 +15,13 @@
             <Node name="API" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True">
-                <Node name="Entities" expanded="True">
-                  <Node name="Restaurant.cs" selected="True" />
-                </Node>
+                <Node name="Entities" expanded="True" />
                 <Node name="Repositories" expanded="True" />
               </Node>
               <Node name="Properties" expanded="True" />
-              <Node name="Services" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="MenuService.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -31,9 +35,7 @@
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/lukaslevickis/Desktop/full stack/BIT/vsapps/angular/RestaurantsChain/API/src/Controllers/RestaurantController.cs" relfile="src/Controllers/RestaurantController.cs" line="40" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

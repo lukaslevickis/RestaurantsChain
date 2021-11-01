@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,9 +17,9 @@ namespace API.DAL.Repositories
             this.dbSet = context.Set<TEntity>();
         }
 
-        public virtual async Task<List<TEntity>> GetAllAsync()
+        public virtual async Task<List<TEntity>> GetAllAsync(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy)
         {
-            return await dbSet.ToListAsync();
+            return await orderBy(this.dbSet).ToListAsync();
         }
 
         public virtual async Task<TEntity> CreateAsync(TEntity entity)
