@@ -28,7 +28,6 @@ namespace API.Services
 
         public async Task<Menu> CreateAsync(Menu menu)
         {
-            //Employee entity = _mapper.Map<Employee>(employee);
             return await _menuRepository.CreateAsync(menu);
         }
 
@@ -40,7 +39,6 @@ namespace API.Services
 
         public async Task<Menu> UpdateAsync(Menu menu)
         {
-            //Employee entity = _mapper.Map<Employee>(employee);
             return await _menuRepository.UpdateAsync(menu);
         }
     }

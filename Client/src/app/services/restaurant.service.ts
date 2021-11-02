@@ -6,6 +6,7 @@ import { Restaurant } from '../models/restaurant';
 @Injectable({
   providedIn: 'root'
 })
+
 export class RestaurantService {
   private http: HttpClient;
 

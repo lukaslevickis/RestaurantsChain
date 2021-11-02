@@ -45,7 +45,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] Restaurant restaurant)
         {
-            if (id != restaurant.Id)//todo
+            if (id != restaurant.Id)
             {
                 return BadRequest();
             }

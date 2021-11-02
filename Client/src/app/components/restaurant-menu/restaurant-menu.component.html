@@ -1,66 +1,71 @@
-<table class="table table-striped">
-    <thead>
-    <tr>
-    <th scope="col">Title</th>
-    <th scope="col">Price</th>
-    <th scope="col">Weight</th>
-    <th scope="col">Meat</th>
-    <th scope="col">About</th>
-    <th scope="col">Remove</th>
-    <th scope="col">Update</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let meal of meals">
-    <td>{{meal.title}}</td>
-    <td>{{meal.price}}</td>
-    <td>{{meal.weight}}</td>
-    <td>{{meal.meat}}</td>
-    <td>{{meal.about}}</td>
-    <td><button class="delete btn-danger" (click)="deleteMeal(meal.id)">remove</button></td>
-    <td><button class="update btn-primary" (click)="loadValuesToForm(meal)">update</button></td>
-    </tr>
-    </tbody>
-</table>
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Meat</th>
+        <th scope="col">About</th>
+        <th scope="col">Remove</th>
+        <th scope="col">Update</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let meal of meals">
+        <td>{{meal.title}}</td>
+        <td>{{meal.price}}</td>
+        <td>{{meal.weight}}</td>
+        <td>{{meal.meat}}</td>
+        <td>{{meal.about}}</td>
+        <td><button class="delete btn-danger" (click)="deleteMeal(meal.id)">remove</button></td>
+        <td><button class="update btn-primary" (click)="loadValuesToForm(meal)">update</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
-<form [formGroup]="mealForm">
+<h4>add meal</h4>
+<div class="row">
+    <form [formGroup]="mealForm" class="col-3">
 
-    <div>
-        <label for="title">
-            title 
-        </label>
-        <input id="title" type="text" formControlName="title" [(ngModel)]="title">
-    </div>
-  
-    <div>
-        <label for="price">
-            price 
-        </label>
-        <input id="price" type="text" formControlName="price" [(ngModel)]="price">
-    </div>
-
-    <div>
-        <label for="weight">
-            weight 
-        </label>
-        <input id="weight" type="text" formControlName="weight" [(ngModel)]="weight">
-    </div>
+        <div class="form-group">
+            <label for="title">
+                title 
+            </label>
+            <input class="form-control" id="title" type="text" formControlName="title" [(ngModel)]="title">
+        </div>
       
-    <div>
-        <label for="meat">
-            meat 
-        </label>
-        <input id="meat" type="text" formControlName="meat" [(ngModel)]="meat">
-    </div>
-
-    <div>
-        <label for="about">
-            about 
-        </label>
-        <input id="about" type="text" formControlName="about" [(ngModel)]="about">
-    </div>
+        <div class="form-group">
+            <label for="price">
+                price 
+            </label>
+            <input class="form-control" id="price" type="text" formControlName="price" [(ngModel)]="price">
+        </div>
     
-    <div *ngIf="update; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock><button class="update2 btn-primary" (click)="updateMeal()">update</button></ng-template>
-    <ng-template #elseBlock><button class="button btn-primary" (click)="addMeal()">Add</button></ng-template>
-</form>
+        <div class="form-group">
+            <label for="weight">
+                weight 
+            </label>
+            <input class="form-control" id="weight" type="text" formControlName="weight" [(ngModel)]="weight">
+        </div>
+          
+        <div class="form-group">
+            <label for="meat">
+                meat 
+            </label>
+            <input class="form-control" id="meat" type="text" formControlName="meat" [(ngModel)]="meat">
+        </div>
+    
+        <div class="form-group">
+            <label for="about">
+                about 
+            </label>
+            <input class="form-control" id="about" type="text" formControlName="about" [(ngModel)]="about">
+        </div>
+        
+        <div *ngIf="update; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock><button class="update2 btn-primary" (click)="updateMeal()">update</button></ng-template>
+        <ng-template #elseBlock><button class="button btn-primary" (click)="addMeal()">Add</button></ng-template>
+    </form>
+</div>

@@ -10,6 +10,7 @@ import { RestaurantMenu } from 'src/app/models/restaurant-menu';
   templateUrl: './restaurant.component.html',
   styleUrls: ['./restaurant.component.css']
 })
+
 export class RestaurantComponent implements OnInit {
   private restaurantService: RestaurantService;
   private restaurantMenuService: RestaurantMenuService;
