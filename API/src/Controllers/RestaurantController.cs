@@ -61,5 +61,12 @@ namespace API.Controllers
 
             return NoContent();
         }
+
+        [HttpGet]
+        [Route("menu/{id}")]
+        public async Task<ActionResult> GetRestaurantsByMeal(int id)
+        {
+            return Ok(await _restaurantService.GetRestaurantsByMealAsync(id));
+        }
     }
 }

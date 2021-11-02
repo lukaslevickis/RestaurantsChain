@@ -81,6 +81,7 @@ export class RestaurantMenuComponent implements OnInit {
     this.restaurantMenuService.updateMeal(this.postData).subscribe(updatedMeal => {
       let index = this.meals.map(e => e.id).indexOf(updatedMeal.id);
       this.meals[index] = updatedMeal;
+      this.meals.sort((a, b) => (a.price > b.price) ? 1 : -1);
       this.resetFormValues();
     });
   }

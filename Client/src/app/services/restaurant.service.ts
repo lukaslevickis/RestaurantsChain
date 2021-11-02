@@ -21,11 +21,15 @@ export class RestaurantService {
     return this.http.post<Restaurant>("https://localhost:5002/api/restaurant", restaurant);
   }
 
-  public deleteRestaurant(id:number): Observable<unknown> {
+  public deleteRestaurant(id: number): Observable<unknown> {
     return this.http.delete(`${"https://localhost:5002/api/restaurant"}/${id}`);
   }
 
   public updateRestaurant(restaurant: Restaurant): Observable<Restaurant> {
     return this.http.put<Restaurant>(`${"https://localhost:5002/api/restaurant"}/${restaurant.id}`, restaurant);
+  }
+
+  public getMealRestaurants(id: number): Observable<Restaurant[]> {
+    return this.http.get<Restaurant[]>(`${"https://localhost:5002/api/restaurant/menu"}/${id}`);
   }
 }

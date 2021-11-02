@@ -17,7 +17,7 @@ export class RestaurantComponent implements OnInit {
   public meals: RestaurantMenu[] = [];
   update: boolean = false;
   mealId: number = null as any;
-  mealId2: number = null as any;
+  mealId2: number = 0;
   employees: number = null as any;
   restaurantId: number = null as any;
   customers: number = null as any;
@@ -40,10 +40,7 @@ export class RestaurantComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMeals();
-
-    this.restaurantService.getRestaurants().subscribe((restaurantsFromApi) => {
-      this.restaurants = restaurantsFromApi;
-    });
+    this.getRestaurants();
   }
 
   addRestaurant(): void {
@@ -61,6 +58,12 @@ export class RestaurantComponent implements OnInit {
   deleteRestaurant(id: number): void {
     this.restaurantService.deleteRestaurant(id).subscribe(() => {
       this.restaurants = this.restaurants.filter(x => x.id != id);
+    });
+  }
+
+  getRestaurants(): void {
+    this.restaurantService.getRestaurants().subscribe((restaurantsFromApi) => {
+      this.restaurants = restaurantsFromApi;
     });
   }
 
@@ -92,6 +95,7 @@ export class RestaurantComponent implements OnInit {
     this.restaurantService.updateRestaurant(this.postData).subscribe(updatedRestaurant => {
       let index = this.restaurants.map(e => e.id).indexOf(updatedRestaurant.id);
       this.restaurants[index] = updatedRestaurant;
+      this.restaurants.sort((a, b) => (a.title > b.title) ? 1 : -1);
       this.resetFormValues();
     });
   }
@@ -106,7 +110,13 @@ export class RestaurantComponent implements OnInit {
   }
 
   filterTable(id: number): void {
-    this.restaurants = this.restaurants.filter(restaurant => restaurant.mealId == id);
+    if (id == 0) {
+      this.getRestaurants();
+    } else {
+      this.restaurantService.getMealRestaurants(id).subscribe((restaurantsFromApi) => {
+        this.restaurants = restaurantsFromApi;
+      });
+    }
   }
 
 }

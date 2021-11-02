@@ -5,6 +5,7 @@
             meal of the day 
         </label>
         <select [(ngModel)]="mealId2">
+            <option value="0" selected>all</option>
             <option [selected]="mealId2 == meal.id" *ngFor="let meal of meals" value="{{meal.id}}">{{meal.title}}</option>
         </select>
     </div>
@@ -72,5 +73,5 @@
     </form>
 
     <app-restaurant-menu (onMenuUpdated) = "menuUpdated($event)"></app-restaurant-menu>
-    
+
 </div>

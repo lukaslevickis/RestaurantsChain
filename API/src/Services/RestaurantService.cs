@@ -38,6 +38,7 @@ namespace API.Services
                     if (restaurant.MealId == menu.Id)
                     {
                         restaurant.MealName = menu.Title;
+                        break;
                     }
                 }
             }
@@ -72,10 +73,17 @@ namespace API.Services
                 if (menu.Id == updatedRestaurant.MealId)
                 {
                     updatedRestaurant.MealName = menu.Title;
+                    break;
                 }
             }
 
             return updatedRestaurant;
+        }
+
+        public async Task<List<RestaurantDto>> GetRestaurantsByMealAsync(int id)
+        {
+            List<RestaurantDto> restaurants = await GetAllAsync();
+            return restaurants.Where(x => x.MealId == id).ToList();
         }
     }
 }
